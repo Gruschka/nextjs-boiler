@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+
+/* =========================================================================
+   Design Tokens
+   ========================================================================= */
+
+:root {
+  /* ── Core palette ─────────────────────────────────────────────────────── */
+  --primary:        #2563EB;
+  --primary-soft:   #EFF6FF;
+  --primary-deep:   #1D4ED8;
+
+  --neutral-900:    #0F172A;
+  --neutral-700:    #334155;
+  --neutral-500:    #64748B;
+  --neutral-200:    #E2E8F0;
+  --neutral-100:    #F1F5F9;
+  --neutral-50:     #F8FAFC;
+
+  /* ── Semantic surfaces ────────────────────────────────────────────────── */
+  --bg-page:        var(--neutral-50);
+  --bg-surface:     #FFFFFF;
+  --bg-surface-2:   var(--neutral-100);
+
+  --fg-1:           var(--neutral-900);
+  --fg-2:           var(--neutral-700);
+  --fg-3:           var(--neutral-500);
+  --fg-accent:      var(--primary);
+
+  --border-1:       rgba(15, 23, 42, 0.12);
+  --border-2:       rgba(15, 23, 42, 0.06);
+
+  /* ── Shadows ──────────────────────────────────────────────────────────── */
+  --shadow-1:     0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-2:     0 4px 12px rgba(15, 23, 42, 0.1), 0 1px 3px rgba(15, 23, 42, 0.06);
+
+  /* ── Spacing ──────────────────────────────────────────────────────────── */
+  --sp-xs:  4px;
+  --sp-sm:  8px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  40px;
+  --sp-2xl: 64px;
+
+  /* ── Radii ────────────────────────────────────────────────────────────── */
+  --r-sm:   4px;
+  --r-md:   8px;
+  --r-lg:   12px;
+  --r-pill: 999px;
+
+  /* ── Typography ───────────────────────────────────────────────────────── */
+  --font-sans:  var(--font-inter), system-ui, sans-serif;
+  --font-mono:  ui-monospace, 'Cascadia Code', monospace;
+}
+
+/* ── Dark mode ────────────────────────────────────────────────────────────── */
+[data-theme='dark'] {
+  --bg-page:      #0F172A;
+  --bg-surface:   #1E293B;
+  --bg-surface-2: #293548;
+
+  --fg-1:         #F8FAFC;
+  --fg-2:         #CBD5E1;
+  --fg-3:         #94A3B8;
+  --fg-accent:    #60A5FA;
+
+  --border-1:     rgba(248, 250, 252, 0.12);
+  --border-2:     rgba(248, 250, 252, 0.06);
+
+  --shadow-1:     0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-2:     0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Tailwind semantic aliases ────────────────────────────────────────────── */
+@theme inline {
+  --color-bg-page:    var(--bg-page);
+  --color-bg-surface: var(--bg-surface);
+  --color-fg:         var(--fg-1);
+  --color-fg-2:       var(--fg-2);
+  --color-fg-3:       var(--fg-3);
+  --color-accent:     var(--fg-accent);
+  --color-border:     var(--border-1);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+html {
+  background: var(--bg-page);
+  color: var(--fg-1);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
