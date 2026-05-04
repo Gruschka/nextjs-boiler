@@ -1,0 +1,11 @@
+{
+  "common": {
+    "theme_light": "Switch to light mode",
+    "theme_dark":  "Switch to dark mode"
+  },
+  "home": {
+    "title":       "Next.js Boilerplate",
+    "subtitle":    "Next.js 16 · TypeScript · Tailwind · next-intl · Prisma",
+    "description": "A production-ready starter with i18n, dark mode, Storybook, and Vitest."
+  }
+}

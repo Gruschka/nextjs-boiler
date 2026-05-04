@@ -1,0 +1,11 @@
+{
+  "common": {
+    "theme_light": "Cambiar a modo claro",
+    "theme_dark":  "Cambiar a modo oscuro"
+  },
+  "home": {
+    "title":       "Next.js Boilerplate",
+    "subtitle":    "Next.js 16 · TypeScript · Tailwind · next-intl · Prisma",
+    "description": "Un starter listo para producción con i18n, modo oscuro, Storybook y Vitest."
+  }
+}
