@@ -78,3 +78,7 @@ npm run dev
 ```
 
 Husky hooks are installed automatically via the `prepare` script on `npm install`.
+
+## After cloning
+
+Open `CLAUDE.md` and fill in the **Project overview** section with a one-paragraph description of what your app does, its default locale, and any domain-specific conventions. This is the first thing Claude reads — a good overview prevents most wrong-file and wrong-pattern mistakes before they happen.
