@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { ThemeToggle } from '@/components/layout/ThemeToggle'
+import { SidebarToggle } from '@/components/layout/SidebarToggle'
 import { LocaleSelector } from '@/components/ui/LocaleSelector'
 
 export default function Home() {
@@ -10,14 +11,17 @@ export default function Home() {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-end',
+          justifyContent: 'space-between',
           gap: 'var(--sp-sm)',
           padding: 'var(--sp-md) var(--sp-lg)',
           borderBottom: '1px solid var(--border-1)',
         }}
       >
-        <LocaleSelector />
-        <ThemeToggle />
+        <SidebarToggle />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-sm)' }}>
+          <LocaleSelector />
+          <ThemeToggle />
+        </div>
       </header>
       <main style={{ padding: 'var(--sp-xl)', maxWidth: 600 }}>
         <h1 style={{ color: 'var(--fg-1)', marginBottom: 'var(--sp-sm)', fontSize: 28 }}>
