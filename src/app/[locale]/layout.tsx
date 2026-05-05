@@ -3,7 +3,9 @@ import type { ReactNode } from 'react'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import { QueryProvider } from '@/components/layout/QueryProvider'
 import { SetHtmlLang } from '@/components/layout/SetHtmlLang'
+import { Sidebar } from '@/components/layout/Sidebar'
 import { routing } from '@/i18n/routing'
 
 export const metadata: Metadata = {
@@ -32,8 +34,11 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <SetHtmlLang locale={locale} />
-      {children}
+      <QueryProvider>
+        <SetHtmlLang locale={locale} />
+        <Sidebar />
+        {children}
+      </QueryProvider>
     </NextIntlClientProvider>
   )
 }

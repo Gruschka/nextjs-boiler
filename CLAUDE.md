@@ -84,27 +84,9 @@ Use Tailwind semantic aliases defined in the `@theme inline` block:
 
 Available aliases: `text-fg`, `text-fg-2`, `text-fg-3`, `text-accent`, `bg-page`, `bg-surface`, `border-border`.
 
-## Next.js conventions
-
-- **Default to Server Components.** Add `'use client'` only when the component needs hooks, event handlers, or browser APIs.
-- **`page.tsx` files are always Server Components.** Fetch data directly with `async/await` — no `useEffect` for data fetching.
-- **Interactive UI goes in separate Client Components** imported by the Server Component page, not mixed into `page.tsx`.
-- **Server Actions** for form submissions and mutations — place them in `src/app/[locale]/{feature}/actions.ts`.
-- **`loading.tsx` and `error.tsx`** in route segments handle loading/error states — don't build per-page spinners.
-- **Images**: always `next/image`. Never raw `<img>`.
-- **Internal navigation**: always `Link` from `@/i18n/navigation` (locale-aware wrapper). Never `next/link` directly, never `<a>` or `window.location` for internal routes.
-- **Metadata**: use `generateMetadata` or a static `metadata` export. Never `<Head>`.
-- **Route groups** `(auth)/` and `(public)/` to share layouts — don't nest layouts deeper than 2 levels.
-
-## Error handling
-
-- Route-level errors: `error.tsx` at the route segment boundary. Route-level loading: `loading.tsx`. Component-level loading: `<Suspense>`.
-- Server Actions return a discriminated union — never throw:
-  ```ts
-  { success: true; data: T } | { success: false; error: string }
-  ```
-- API route errors use a typed shape: `{ status: number; message: string; code: string }`.
-- All `async` operations in Client Components have `try/catch` with a typed error variable — never `catch (e: any)`.
+For Next.js conventions (Server Components, routing, navigation, metadata), see `.claude/rules/nextjs.md`.
+For data fetching and state management patterns, see `.claude/rules/data-fetching.md`.
+For error handling conventions, see `.claude/rules/error-handling.md`.
 
 ## Before closing a task
 
@@ -113,6 +95,39 @@ Run `npm run test` after any logic change. Run `npm run check` before declaring 
 ## Scaling this file
 
 If this file exceeds 180 lines, move domain-specific rules to `.claude/rules/<topic>.md` with YAML frontmatter path globs — rules there load only when Claude touches matching files.
+
+## Component design
+
+Favor small, focused, reusable components. Before writing JSX inline, ask: can this be its own component? If it has a name, repeats, or groups related elements — extract it.
+
+```tsx
+// Correct
+<PageHeader title={t('title')} />
+<UserCard user={user} />
+
+// Wrong — unnamed, inlined, not reusable
+<div className="flex items-center gap-2 border-b border-border px-4 py-3">
+  <span className="text-sm font-medium text-fg">{t('title')}</span>
+</div>
+```
+
+- Repeated visual patterns → extract to `components/ui/`
+- Feature-specific groups → extract to `components/[domain]/`
+- A component that does two unrelated things → split it
+
+## Styling
+
+Use Tailwind utilities or arbitrary values with CSS tokens — never inline styles.
+
+```tsx
+// Correct
+<div className="bg-[var(--bg-surface)] px-4 py-3 border-b border-border" />
+
+// Wrong — breaks dark mode, bypasses the token system
+<div style={{ backgroundColor: 'var(--bg-surface)', padding: '12px' }} />
+```
+
+The demo `page.tsx` uses inline styles as placeholder — do not follow that pattern.
 
 ## Hard rules
 
