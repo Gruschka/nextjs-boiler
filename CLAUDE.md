@@ -134,6 +134,25 @@ Run `npm run test` after any logic change. Run `npm run check` before declaring 
 
 If this file exceeds 180 lines, move domain-specific rules to `.claude/rules/<topic>.md` with YAML frontmatter path globs — rules there load only when Claude touches matching files.
 
+## Component design
+
+Favor small, focused, reusable components. Before writing JSX inline, ask: can this be its own component? If it has a name, repeats, or groups related elements — extract it.
+
+```tsx
+// Correct
+<PageHeader title={t('title')} />
+<UserCard user={user} />
+
+// Wrong — unnamed, inlined, not reusable
+<div className="flex items-center gap-2 border-b border-border px-4 py-3">
+  <span className="text-sm font-medium text-fg">{t('title')}</span>
+</div>
+```
+
+- Repeated visual patterns → extract to `components/ui/`
+- Feature-specific groups → extract to `components/[domain]/`
+- A component that does two unrelated things → split it
+
 ## Styling
 
 Use Tailwind utilities or arbitrary values with CSS tokens — never inline styles.
