@@ -110,6 +110,10 @@ Available aliases: `text-fg`, `text-fg-2`, `text-fg-3`, `text-accent`, `bg-page`
 
 Run `npm run test` after any logic change. Run `npm run check` before declaring a task done.
 
+## Scaling this file
+
+If this file exceeds 180 lines, move domain-specific rules to `.claude/rules/<topic>.md` with YAML frontmatter path globs — rules there load only when Claude touches matching files.
+
 ## Hard rules
 
 - No `any` — ESLint enforces this as an error
