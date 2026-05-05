@@ -10,6 +10,8 @@ Production-ready Next.js 16 boilerplate with strict TypeScript, i18n, testing, a
 | Language | TypeScript 5 — strict mode, `allowJs: false` |
 | Styling | Tailwind CSS 4 |
 | i18n | next-intl |
+| Server state | TanStack Query v5 |
+| Client state | Zustand v5 |
 | Testing | Vitest + jsdom |
 | Linting | ESLint 9 (Next.js core-web-vitals + TypeScript rules) |
 | Formatting | Prettier 3 + prettier-plugin-tailwindcss |
