@@ -84,47 +84,9 @@ Use Tailwind semantic aliases defined in the `@theme inline` block:
 
 Available aliases: `text-fg`, `text-fg-2`, `text-fg-3`, `text-accent`, `bg-page`, `bg-surface`, `border-border`.
 
-## Next.js conventions
-
-- **Default to Server Components.** Add `'use client'` only when the component needs hooks, event handlers, or browser APIs.
-- **`page.tsx` files are always Server Components.** Fetch data directly with `async/await` — no `useEffect` for data fetching.
-- **Interactive UI goes in separate Client Components** imported by the Server Component page, not mixed into `page.tsx`.
-- **Server Actions** for form submissions and mutations — place them in `src/app/[locale]/{feature}/actions.ts`.
-- **`loading.tsx` and `error.tsx`** in route segments handle loading/error states — don't build per-page spinners.
-- **Images**: always `next/image`. Never raw `<img>`.
-- **Internal navigation**: always `Link` from `@/i18n/navigation` (locale-aware wrapper). Never `next/link` directly, never `<a>` or `window.location` for internal routes.
-- **Metadata**: use `generateMetadata` or a static `metadata` export. Never `<Head>`.
-- **Route groups** `(auth)/` and `(public)/` to share layouts — don't nest layouts deeper than 2 levels.
-
-## Data fetching
-
-- **Server Components**: fetch data directly with `async/await` — no hooks, no `useEffect`.
-- **Client Components** needing reactive/interactive data: TanStack Query. Hooks live in `src/components/[domain]/hooks/`.
-- Query keys follow `[domain, entity, ...params]` — e.g. `['users', 'profile', { id }]`.
-- **Mutations**: Server Actions only — never call internal API routes from the client.
-- Server Actions must call `revalidatePath()` or `revalidateTag()` after mutating data.
-- `app/api/` route handlers are for external webhooks and third-party integrations only.
-
-## State management
-
-| State type | Tool | Location |
-|---|---|---|
-| Server state (Server Components) | `async/await` directly | `page.tsx` or layout |
-| Server state (Client Components) | TanStack Query | `[domain]/hooks/` |
-| Global UI state (sidebar, modals) | Zustand | `src/stores/` |
-| URL state (filters, pagination) | `useSearchParams` | component |
-
-Never duplicate URL state in Zustand. Never use Zustand for server state.
-
-## Error handling
-
-- Route-level errors: `error.tsx` at the route segment boundary. Route-level loading: `loading.tsx`. Component-level loading: `<Suspense>`.
-- Server Actions return a discriminated union — never throw:
-  ```ts
-  { success: true; data: T } | { success: false; error: string }
-  ```
-- API route errors use a typed shape: `{ status: number; message: string; code: string }`.
-- All `async` operations in Client Components have `try/catch` with a typed error variable — never `catch (e: any)`.
+For Next.js conventions (Server Components, routing, navigation, metadata), see `.claude/rules/nextjs.md`.
+For data fetching and state management patterns, see `.claude/rules/data-fetching.md`.
+For error handling conventions, see `.claude/rules/error-handling.md`.
 
 ## Before closing a task
 
