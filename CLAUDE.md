@@ -96,6 +96,16 @@ Available aliases: `text-fg`, `text-fg-2`, `text-fg-3`, `text-accent`, `bg-page`
 - **Metadata**: use `generateMetadata` or a static `metadata` export. Never `<Head>`.
 - **Route groups** `(auth)/` and `(public)/` to share layouts — don't nest layouts deeper than 2 levels.
 
+## Error handling
+
+- Route-level errors: `error.tsx` at the route segment boundary. Route-level loading: `loading.tsx`. Component-level loading: `<Suspense>`.
+- Server Actions return a discriminated union — never throw:
+  ```ts
+  { success: true; data: T } | { success: false; error: string }
+  ```
+- API route errors use a typed shape: `{ status: number; message: string; code: string }`.
+- All `async` operations in Client Components have `try/catch` with a typed error variable — never `catch (e: any)`.
+
 ## Before closing a task
 
 Run `npm run test` after any logic change. Run `npm run check` before declaring a task done.
