@@ -134,6 +134,20 @@ Run `npm run test` after any logic change. Run `npm run check` before declaring 
 
 If this file exceeds 180 lines, move domain-specific rules to `.claude/rules/<topic>.md` with YAML frontmatter path globs — rules there load only when Claude touches matching files.
 
+## Styling
+
+Use Tailwind utilities or arbitrary values with CSS tokens — never inline styles.
+
+```tsx
+// Correct
+<div className="bg-[var(--bg-surface)] px-4 py-3 border-b border-border" />
+
+// Wrong — breaks dark mode, bypasses the token system
+<div style={{ backgroundColor: 'var(--bg-surface)', padding: '12px' }} />
+```
+
+The demo `page.tsx` uses inline styles as placeholder — do not follow that pattern.
+
 ## Hard rules
 
 - No `any` — ESLint enforces this as an error
