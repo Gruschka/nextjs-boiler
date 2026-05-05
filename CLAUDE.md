@@ -96,6 +96,10 @@ Available aliases: `text-fg`, `text-fg-2`, `text-fg-3`, `text-accent`, `bg-page`
 - **Metadata**: use `generateMetadata` or a static `metadata` export. Never `<Head>`.
 - **Route groups** `(auth)/` and `(public)/` to share layouts — don't nest layouts deeper than 2 levels.
 
+## Before closing a task
+
+Run `npm run test` after any logic change. Run `npm run check` before declaring a task done.
+
 ## Hard rules
 
 - No `any` — ESLint enforces this as an error
